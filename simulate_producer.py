@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 async def stream_data(filepath, topic, ticker = None, delay=1):
     producer = AIOKafkaProducer(
-        bootstrap_servers = os.getenv("INTERNAL_KAFKA_BOOTSTRAP_SERVERS"),
+        bootstrap_servers = os.getenv("EXTERNAL_KAFKA_BOOTSTRAP_SERVERS", "localhost:29092"),
         value_serializer=lambda v: json.dumps(v).encode('utf-8'),
         key_serializer=lambda k: k.encode('utf-8') if k else None
     )

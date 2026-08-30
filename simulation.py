@@ -41,7 +41,7 @@ def simulate_price(start_price, n_days, mu, sigma, base_vol, inject_anomalies = 
     #     "Day": np.repeat(np.arange(n_days), no_minutes)
     # })
     
-    return raw_df, df
+    return raw_df
 
 def shift_price(price, start, level):
     if start >= len(price):
@@ -315,7 +315,8 @@ anomaly_lambdas = {
     ]
 }
 
-# df, train_labels = random_anomaly_injection(raw_df, 8, list(INJECTORS.keys()), 30)
-# df, train_labels = targeted_anomaly_injection(raw_df, anomaly_lambdas)
+print(raw_df.head())
+df, train_labels = random_anomaly_injection(raw_df, 8, list(INJECTORS.keys()), 30)
+#df, train_labels = targeted_anomaly_injection(raw_df, anomaly_lambdas)
 # df.to_csv("train_data1.csv")
-#plot_ohlcv(train_series, train_labels)
+plot_ohlcv(train_series, train_labels)

@@ -1,4 +1,4 @@
-FROM python:3.11-slim
+nnFROM python:3.11-slim
 
 WORKDIR /app
 
@@ -10,7 +10,9 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY data_extraction.py .
+COPY simulate_producer.py .
+COPY simulate_consumer.py .
 COPY asset_ticker.txt .
+COPY train_data1.csv .
 
-CMD ["python", "data_extraction.py"]
+CMD ["python", "simulate_producer.py"]
